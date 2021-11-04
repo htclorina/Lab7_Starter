@@ -134,12 +134,11 @@ function createRecipeCards() {
   }
   for(var i = 3; i < 6; i++)
   {
-    //document.querySelector('.section--recipe-cards').classList.add('hidden');
     const recipeCard3 = document.createElement('recipe-card');
     recipeCard3.data = recipeData[recipes[i]];
     const page3 = recipeData[recipes[i]]['page-name'];
     router.addPage(page, function() {
-      //document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
       document.querySelector('.section--recipe-cards').classList.add('hidden');
       document.querySelector('.section--recipe-expand').classList.add('shown');
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
