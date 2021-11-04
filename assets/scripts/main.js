@@ -25,6 +25,8 @@ const router = new Router(function () {
    * This will only be two single lines
    * If you did this right, you should see the recipe cards just like last lab
    */
+   document.querySelector('section.section--recipe-cards').classList.add('shown');
+   document.querySelector('section.section--recipe-expand').classList.remove('shown');
 });
 
 window.addEventListener('DOMContentLoaded', init);
@@ -117,6 +119,34 @@ function createRecipeCards() {
    * all the recipes. (bonus - add the class 'hidden' to every recipe card with 
    * an index greater  than 2 in your for loop to make show more button functional)
    */
+  for(var i = 1; i < 3; i++)
+  {
+    const recipeCard2 = document.createElement('recipe-card');
+    recipeCard2.data = recipeData[recipes[i]];
+    const page2 = recipeData[recipes[i]]['page-name'];
+    router.addPage(page, function() {
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = recipeData[recipes[i]];
+    });
+    bindRecipeCard(recipeCard2, page2);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard2);
+  }
+  for(var i = 3; i < 6; i++)
+  {
+    //document.querySelector('.section--recipe-cards').classList.add('hidden');
+    const recipeCard3 = document.createElement('recipe-card');
+    recipeCard3.data = recipeData[recipes[i]];
+    const page3 = recipeData[recipes[i]]['page-name'];
+    router.addPage(page, function() {
+      //document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-cards').classList.add('hidden');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = recipeData[recipes[i]];
+    });
+    bindRecipeCard(recipeCard3, page3);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3);
+  }
 }
 
 /**
