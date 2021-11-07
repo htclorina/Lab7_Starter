@@ -57,6 +57,7 @@ function initializeServiceWorker() {
    *  TODO - Part 2 Step 1
    *  Initialize the service worker set up in sw.js
    */
+  
 }
 
 /**
@@ -117,7 +118,7 @@ function createRecipeCards() {
    * the recipes array. First, please read through the code in this function to
    * understand what it is doing. Then, turn this into a for loop to iterate over 
    * all the recipes. (bonus - add the class 'hidden' to every recipe card with 
-   * an index greater  than 2 in your for loop to make show more button functional)
+   * an index greater than 2 in your for loop to make show more button functional)
    */
   for(var i = 1; i < 3; i++)
   {
@@ -132,19 +133,18 @@ function createRecipeCards() {
     bindRecipeCard(recipeCard2, page2);
     document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard2);
   }
-  for(var i = 3; i < 6; i++)
+  for(var i = 3; i < recipes.length; i++)
   {
     const recipeCard3 = document.createElement('recipe-card');
     recipeCard3.data = recipeData[recipes[i]];
     const page3 = recipeData[recipes[i]]['page-name'];
     router.addPage(page, function() {
       document.querySelector('.section--recipe-cards').classList.remove('shown');
-      document.querySelector('.section--recipe-cards').classList.add('hidden');
       document.querySelector('.section--recipe-expand').classList.add('shown');
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
     });
     bindRecipeCard(recipeCard3, page3);
-    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3).classList.add('hidden');
   }
 }
 
@@ -201,6 +201,13 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
+  document.addEventListener('keydown', function(event)
+  {
+    if(event.key == 'Escape')
+    {
+      router.navigate('home');
+    }
+  })
 }
 
 /**
@@ -222,4 +229,5 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
+
 }
