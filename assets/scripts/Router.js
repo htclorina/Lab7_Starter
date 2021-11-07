@@ -73,7 +73,7 @@ export class Router {
     let hash;
     if(page === 'home')
     {
-      console.log('hi');
+      //console.log('hi');
       hash = '';
     }
     else
