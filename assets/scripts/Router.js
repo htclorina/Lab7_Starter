@@ -38,7 +38,7 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
-    this['page'] = pageFunc;
+    this[page] = pageFunc;
   }
 
   /**
@@ -71,8 +71,9 @@ export class Router {
       return;
     }
     let hash;
-    if(page == 'home')
+    if(page === 'home')
     {
+      console.log('hi');
       hash = '';
     }
     else

@@ -57,7 +57,7 @@ function initializeServiceWorker() {
    *  TODO - Part 2 Step 1
    *  Initialize the service worker set up in sw.js
    */
-  
+
 }
 
 /**
@@ -120,12 +120,68 @@ function createRecipeCards() {
    * all the recipes. (bonus - add the class 'hidden' to every recipe card with 
    * an index greater than 2 in your for loop to make show more button functional)
    */
-  for(var i = 1; i < 3; i++)
+   var recipeCard2 = document.createElement('recipe-card');
+  recipeCard2.data = recipeData[recipes[1]];
+  var page2 = recipeData[recipes[1]]['page-name'];
+  router.addPage(page2, function() {
+    document.querySelector('.section--recipe-cards').classList.remove('shown');
+    document.querySelector('.section--recipe-expand').classList.add('shown');
+    document.querySelector('recipe-expand').data = recipeData[recipes[1]];
+  });
+  bindRecipeCard(recipeCard2, page2);
+
+  document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard2);
+
+  recipeCard2 = document.createElement('recipe-card');
+  recipeCard2.data = recipeData[recipes[2]];
+  page2 = recipeData[recipes[2]]['page-name'];
+  router.addPage(page2, function() {
+    document.querySelector('.section--recipe-cards').classList.remove('shown');
+    document.querySelector('.section--recipe-expand').classList.add('shown');
+    document.querySelector('recipe-expand').data = recipeData[recipes[2]];
+  });
+  bindRecipeCard(recipeCard2, page2);
+
+  document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard2);
+
+  var recipeCard3 = document.createElement('recipe-card');
+    recipeCard3.data = recipeData[recipes[3]];
+    var page3 = recipeData[recipes[3]]['page-name'];
+    router.addPage(page3, function() {
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = recipeData[recipes[3]];
+    });
+    bindRecipeCard(recipeCard3, page3);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3).classList.add('hidden');
+
+    recipeCard3 = document.createElement('recipe-card');
+    recipeCard3.data = recipeData[recipes[4]];
+    page3 = recipeData[recipes[4]]['page-name'];
+    router.addPage(page3, function() {
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = recipeData[recipes[4]];
+    });
+    bindRecipeCard(recipeCard3, page3);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3).classList.add('hidden');
+
+    recipeCard3 = document.createElement('recipe-card');
+    recipeCard3.data = recipeData[recipes[5]];
+    page3 = recipeData[recipes[5]]['page-name'];
+    router.addPage(page3, function() {
+      document.querySelector('.section--recipe-cards').classList.remove('shown');
+      document.querySelector('.section--recipe-expand').classList.add('shown');
+      document.querySelector('recipe-expand').data = recipeData[recipes[5]];
+    });
+    bindRecipeCard(recipeCard3, page3);
+    document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3).classList.add('hidden');
+  /*for(var i = 1; i < 3; i++)
   {
-    const recipeCard2 = document.createElement('recipe-card');
+    var recipeCard2 = document.createElement('recipe-card');
     recipeCard2.data = recipeData[recipes[i]];
-    const page2 = recipeData[recipes[i]]['page-name'];
-    router.addPage(page, function() {
+    var page2 = recipeData[recipes[i]]['page-name'];
+    router.addPage(page2, function() {
       document.querySelector('.section--recipe-cards').classList.remove('shown');
       document.querySelector('.section--recipe-expand').classList.add('shown');
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
@@ -135,17 +191,17 @@ function createRecipeCards() {
   }
   for(var i = 3; i < recipes.length; i++)
   {
-    const recipeCard3 = document.createElement('recipe-card');
+    var recipeCard3 = document.createElement('recipe-card');
     recipeCard3.data = recipeData[recipes[i]];
-    const page3 = recipeData[recipes[i]]['page-name'];
-    router.addPage(page, function() {
+    var page3 = recipeData[recipes[i]]['page-name'];
+    router.addPage(page3, function() {
       document.querySelector('.section--recipe-cards').classList.remove('shown');
       document.querySelector('.section--recipe-expand').classList.add('shown');
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
     });
     bindRecipeCard(recipeCard3, page3);
     document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard3).classList.add('hidden');
-  }
+  }*/
 }
 
 /**
@@ -229,5 +285,16 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
-
+   document.addEventListener('popstate', function(event)
+   {
+    if(event.state)
+     {
+       console.log(event.state);
+       router.navigate(event.state, true);
+     }
+     else
+     {
+       router.navigate('home', true);
+     }
+   });
 }
